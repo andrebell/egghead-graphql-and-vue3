@@ -14,7 +14,7 @@ fastify.register(mercurius, {
 fastify.register(require("fastify-cors"));
 
 mongoose
-  .connect("mongodb://localhost/mysurfshop")
+  .connect("mongodb://mongodb/mysurfshop")
   .then(() => console.log("Mongodb connected.."))
   .catch((err) => console.log(err));
 
