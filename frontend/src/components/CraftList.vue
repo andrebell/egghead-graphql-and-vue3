@@ -2,13 +2,15 @@
     <h1>Welcome to the Kayak Store</h1>
     <h2>Current Crafts</h2>
     <ul>
-        <li v-for="craft in data" :key="craft.id">{{craft.name}}</li>
+        <Craft v-for="craft in data" :key="craft.id" :craft="craft" />
     </ul>
 </template>
 
 <script setup>
 import { useQuery, useResult } from '@vue/apollo-composable';
-import { gql } from '@apollo/client'
+import { gql } from '@apollo/client';
+
+import Craft from './Craft.vue'
 
 const craftQuery = gql`
 query {
@@ -40,10 +42,5 @@ ul {
     column-gap: 8px;
     row-gap: 8px;
     padding: 0;
-}
-
-li {
-    list-style: none;
-    background-color: lightblue;
 }
 </style>
