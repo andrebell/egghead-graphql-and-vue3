@@ -26,3 +26,5 @@ mongoose
   .then(() => console.log("Mongodb connected.."))
   .catch((err) => console.log(err));
 ```
+
+7. I used yarn to manage the dependencies

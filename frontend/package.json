@@ -14,7 +14,8 @@
     "graphql-tag": "^2.12.6",
     "react": "^18.0.0",
     "sass": "^1.50.0",
-    "vue": "^3.2.25"
+    "vue": "^3.2.25",
+    "vue-router": "^4.0.13"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^2.3.0",

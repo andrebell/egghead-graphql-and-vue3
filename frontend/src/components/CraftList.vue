@@ -1,5 +1,4 @@
 <template>
-    <h1>Welcome to the Kayak Store</h1>
     <h2>Current Crafts</h2>
     <ul>
         <Craft v-for="craft in data" :key="craft.id" :craft="craft" />
