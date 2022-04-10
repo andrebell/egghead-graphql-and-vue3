@@ -1,6 +1,6 @@
 <template>
     <li :class="craft.owner ? 'owned' : 'for-sale'">
-        <p>
+        <router-link :to="`/craft/${craft.id}`">
             {{ craft.name }}
             <span
                 v-if="craft.owner"
@@ -8,7 +8,7 @@
             <span
                 v-else
             >This craft is available to buy and costs ${{ craft.price.toLocaleString('de') }}</span>
-        </p>
+        </router-link>
     </li>
 </template>
 
@@ -32,5 +32,11 @@ li {
     border: 1px solid black;
     border-radius: 4px;
     padding: 6px;
+}
+
+
+a {
+  text-decoration: none;
+  color: black;
 }
 </style>
