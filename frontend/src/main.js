@@ -1,5 +1,6 @@
-import { createApp } from 'vue'
+import { createApp, provide, h } from 'vue'
 import { ApolloClient, createHttpLink, InMemoryCache, gql } from "@apollo/client"
+import { DefaultApolloClient } from "@vue/apollo-composable"
 
 import App from './App.vue'
 
@@ -12,16 +13,9 @@ const defaultClient = new ApolloClient({
     cache,
 });
 
-const query = gql`
-  query {
-    Crafts {
-      edges {
-        name
-      }
-    }
-  }
-`;
-
-defaultClient.query({ query }).then(data => console.log(data));
-
-createApp(App).mount('#app')
+createApp({
+  setup() {
+    provide(DefaultApolloClient, defaultClient)
+  },
+  render: () => h(App)
+}).mount('#app')
