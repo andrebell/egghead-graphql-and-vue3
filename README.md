@@ -28,3 +28,20 @@ mongoose
 ```
 
 7. I used yarn to manage the dependencies
+8. Using a mutation to update a craft always failed for me. I had to comment line 53 in graphql-backend/src/controllers/craftController.js to disable the timeout. After this it worked perfectly.
+
+```javascript
+// Update an existing craft
+exports.updateCraft = async (request, reply) => {
+  try {
+    const id = request.params ? request.params.id : request.id;
+    const fields = request.body ? request.body : request;
+    // await new Promise((resolve, reject) => setTimeout(reject, 2000));  <== Disabled this statement
+    // await new Promise((resolve) => setTimeout(resolve, 2000));
+    const update = await Craft.findByIdAndUpdate(id, fields, { new: true });
+    return update;
+  } catch (error) {
+    throw boom.boomify(error);
+  }
+};
+```
