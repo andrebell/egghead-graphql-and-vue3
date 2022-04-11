@@ -7,7 +7,7 @@ const props = defineProps({
     craft: Object,
 })
 
-const emit = defineEmits(['close', 'updated'])
+const emit = defineEmits(['close', 'updated', 'error'])
 
 const updateFields = reactive({ ...props.craft })
 
@@ -78,6 +78,10 @@ const { mutate: updateCraft, onError } = useMutation(updateMutation, () => {
     }
   };
 });
+
+onError(() => {
+  emit('error')
+})
 
 async function handleSubmit(e) {
     emit('close');

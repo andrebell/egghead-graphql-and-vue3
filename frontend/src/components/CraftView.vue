@@ -31,10 +31,17 @@ const showModal = ref(false)
 function handleRefresh() {
     refetch()
 }
+
+const errorMessage = ref("")
+function handleError() {
+  errorMessage.value = "There was an error. Reverting values."
+}
 </script>
 
 <template>
-    {{ JSON.stringify(craft) }}
+    <!-- {{ JSON.stringify(craft) }} -->
+    <div v-if="errorMessage" class="error">{{ errorMessage }}</div>
+
     <h2 v-if="craft">{{ craft.name }} made by {{ craft.brand }}</h2>
 
     <p v-if="craft">This craft is {{ craft.age }} months old and costs ${{ craft.price }}.</p>
@@ -45,7 +52,14 @@ function handleRefresh() {
     <button @click="showModal = !showModal">Update</button>
 
     <div v-if="showModal" class="modal">
-        <div class="modal-inner"><UpdateCraftForm :craft="craft" @close="showModal=false" @updated="handleRefresh()"/></div>
+        <div class="modal-inner">
+          <UpdateCraftForm 
+            :craft="craft" 
+            @close="showModal=false" 
+            @updated="handleRefresh()"
+            @error="handleError()"
+          />
+        </div>
     </div>
 </template>
 
@@ -72,5 +86,13 @@ function handleRefresh() {
     padding: 20px;
     // border: 1px solid black;
     overflow: auto;
+}
+
+.error {
+  border: 1px solid;
+  margin: 10px;
+  padding: 10px;
+  color: white;
+  background-color: lightcoral;
 }
 </style>
