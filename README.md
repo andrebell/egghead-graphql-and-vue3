@@ -45,3 +45,5 @@ exports.updateCraft = async (request, reply) => {
   }
 };
 ```
+
+9. Later in the course it becomes clear that these timeouts are added on purpose.
